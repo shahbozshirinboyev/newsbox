@@ -1,0 +1,246 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Categories {% endblock title %}
+
+{% block content %}
+<!-- ##### Elements Area Start ##### -->
+<section class="elements-area mt-50">
+    <div class="container">
+        <div class="row">
+
+            <!-- ========== Icon Boxes ========== -->
+            <div class="col-12">
+                <div class="elements-title mb-30">
+                    <h2>Bo'limlar</h2>
+                </div>
+            </div>
+
+            <div class="col-12 mb-50">
+                <div class="row">
+                    {% for category in categories %}
+                    <!-- Single Service Area -->
+                    <div class="col-12 col-md-6 col-lg-4 d-flex">
+                        <a href="{% url category.name|lower %}" onmouseover="this.style.color='red'"
+                            class="w-100 d-flex flex-column border rounded p-4 mb-4">
+                            <div class="single-service-area">
+                                <div class="text">
+                                    <h5>{{ category.name }}</h5>
+                                    <p>{{ category.description }}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+            <!-- ========== Milestones ========== -->
+            <div class="col-12">
+                <div class="elements-title mb-30">
+                    <h2>Statistika</h2>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="newsbox-cool-facts-area">
+                    <div class="row">
+
+                        <!-- Single Cool Facts -->
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="single-cool-fact mb-100">
+                                <div class="scf-icon">
+                                    <img src="{% static 'img/core-img/idea.png' %}" alt="">
+                                </div>
+                                <div class="scf-text">
+                                    <h2><span class="counter">2548</span></h2>
+                                    <p>Foydalanuvchilar soni</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Cool Facts -->
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="single-cool-fact mb-100">
+                                <div class="scf-icon">
+                                    <img src="{% static 'img/core-img/list.png' %}" alt="">
+                                </div>
+                                <div class="scf-text">
+                                    <h2><span class="counter">5487</span></h2>
+                                    <p>Yangiliklar soni</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Cool Facts -->
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="single-cool-fact mb-100">
+                                <div class="scf-icon">
+                                    <img src="{% static 'img/core-img/id-card.png' %}" alt="">
+                                </div>
+                                <div class="scf-text">
+                                    <h2><span class="counter">76</span></h2>
+                                    <p>Jurnalistlar soni</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Cool Facts -->
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="single-cool-fact mb-100">
+                                <div class="scf-icon">
+                                    <img src="{% static 'img/core-img/diamond.png' %}" alt="">
+                                </div>
+                                <div class="scf-text">
+                                    <h2><span class="counter">938</span></h2>
+                                    <p> Kunlik tashriflar soni</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== Accordions ========== -->
+            <div class="col-12">
+                <div class="elements-title mb-30">
+                    <h2>NewsBOX sayti bo‘limlari haqida</h2>
+                </div>
+            </div>
+
+            <!-- ##### Accordians ##### -->
+            <div class="col-12">
+                <div class="accordions mb-100" id="accordion" role="tablist" aria-multiselectable="true">
+                    <!-- single accordian area -->
+                    <div class="panel single-accordion">
+                        <h6><a role="button" class="" aria-expanded="true" aria-controls="collapseOne"
+                                data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                Dunyodagi eng so‘nggi voqealar
+                                <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                            </a></h6>
+                        <div id="collapseOne" class="accordion-content collapse show">
+                            <p>
+                                Dunyoda har kuni turli voqealar ro‘y bermoqda. Biz sizga eng muhim va dolzarb
+                                yangiliklarni yetkazib beramiz. Joriy siyosiy, iqtisodiy va ijtimoiy hodisalar haqida
+                                to‘liq ma’lumot olishingiz mumkin.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- single accordian area -->
+                    <div class="panel single-accordion">
+                        <h6>
+                            <a role="button" class="collapsed" aria-expanded="true" aria-controls="collapseTwo"
+                                data-parent="#accordion" data-toggle="collapse" href="#collapseTwo">
+                                O‘zbekistondagi mahalliy yangiliklar
+                                <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                            </a>
+                        </h6>
+                        <div id="collapseTwo" class="accordion-content collapse">
+                            <p>O‘zbekiston Respublikasida ro‘y berayotgan muhim voqealar, islohotlar va yangi loyihalar
+                                haqida eng so‘nggi ma’lumotlar. Prezident farmonlari, hukumat qarorlari va mahalliy
+                                jamoalarning faoliyati haqida batafsil maqolalar.</p>
+                        </div>
+                    </div>
+                    <!-- single accordian area -->
+                    <div class="panel single-accordion">
+                        <h6>
+                            <a role="button" aria-expanded="true" aria-controls="collapseThree" class="collapsed"
+                                data-parent="#accordion" data-toggle="collapse" href="#collapseThree">Fan: Texnologiya
+                                va Innovatsiyalar
+                                <span class="accor-open"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                <span class="accor-close"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                            </a>
+                        </h6>
+                        <div id="collapseThree" class="accordion-content collapse">
+                            <p>Zamonaviy texnologiyalar, ilmiy kashfiyotlar va innovatsion loyihalar haqida yangiliklar.
+                                Sun’iy intellekt, robototexnika, kosmik tadqiqotlar va boshqa sohalardagi eng so‘nggi
+                                yutuqlar.
+
+                            <p>Bizning saytimizda siz:</p>
+
+                            <ol class="list-group list-group-numbered">
+                                <li class="list-group-item">
+                                    <p class="mb-0">Har kuni yangilanib turadigan yangiliklar</p>
+                                </li>
+                                <li class="list-group-item">
+                                    <p class="mb-0">Mutaxassislar tomonidan tahlillar</p>
+                                </li>
+                                <li class="list-group-item">
+                                    <p class="mb-0">Fotoreportajlar va videomateriallar</p>
+                                </li>
+                                <li class="list-group-item">
+                                    <p class="mb-0">Muhokama uchun interaktiv platforma</p>
+                                </li>
+                            </ol>
+
+
+                            <p>topishingiz mumkin.</p>
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ##### Tabs ##### -->
+            <div class="col-12">
+                <div class="newsbox-tabs-content">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="tab--1" data-toggle="tab" href="#tab1" role="tab"
+                                aria-controls="tab1" aria-selected="false">So'nggi yangiliklar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="tab--2" data-toggle="tab" href="#tab2" role="tab"
+                                aria-controls="tab2" aria-selected="false">Jahon yangiliklari</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="tab--3" data-toggle="tab" href="#tab3" role="tab"
+                                aria-controls="tab3" aria-selected="true">Sport yangiliklari</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content mb-100" id="myTabContent">
+                        <div class="tab-pane fade" id="tab1" role="tabpanel" aria-labelledby="tab--1">
+                            <div class="newsbox-tab-content">
+                                <div class="newsbox-tab-text">
+                                    <p>Bugungi kunning eng dolzarb yangiliklari: O'zbekistonda yangi islohotlar,
+                                        Toshkent shahrida ochilgan yangi infratuzilma loyihalari, iqtisodiyotdagi
+                                        o'zgarishlar va jamiyat hayotiga ta'sir ko'rsatuvchi muhim voqealar. Bizning
+                                        jurnalistlarimiz tomonidan puxta tekshirilgan va ishonchli manbalardan olingan
+                                        ma'lumotlar.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab--2">
+                            <div class="newsbox-tab-content">
+                                <div class="newsbox-tab-text">
+                                    <p>Dunyo miqyosidagi eng muhim voqealar: xalqaro siyosatdagi yangiliklar, global
+                                        iqtisodiy tendentsiyalar, ilmiy kashfiyotlar va texnologik innovatsiyalar. Yaqin
+                                        Sharq, Yevropa, Osiyo va Amerika qit'alaridagi eng so'nggi hodisalar haqida
+                                        to'liq ma'lumot.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade show active" id="tab3" role="tabpanel" aria-labelledby="tab--3">
+                            <div class="newsbox-tab-content">
+                                <div class="newsbox-tab-text">
+                                    <p>Sport olamidagi eng qiziqarli yangiliklar: futbol, boks, tennis va boshqa sport
+                                        turlaridagi so'nggi natijalar, O'zbekiston sportchilarining yutuqlari, xalqaro
+                                        musobaqalar va chempionatlar haqida yangiliklar. Keyingi o'yinlar jadvali va
+                                        ekspertlar tahlillari.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Elements Area End ##### -->
+{% endblock content %}

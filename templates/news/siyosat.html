@@ -1,0 +1,47 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %}
+Siyosiy Xabarlar
+{% endblock title %}
+
+{% block content %}
+<!-- ##### News Area Start ##### -->
+<div class="news-area mb-50">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-12">
+                <!-- Intro News Filter -->
+                <div class="intro-news-filter d-flex justify-content-between">
+                    <h6>Siyosiy yangiliklar</h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+
+                {% for news in siyosat_yangiliklari %}
+                  <!-- Single News Area -->
+                <div class="single-blog-post d-flex flex-wrap style-5 mb-30">
+                    <!-- Blog Thumbnail -->
+                    <div class="blog-thumbnail">
+                        <a href="{{ news.get_absolute_url }}"><img src="{{ news.image.url }}" alt="{{ news.title }}" style="height: 250px; object-fit: cover;"></a>
+                    </div>
+
+                    <!-- Blog Content -->
+                    <div class="blog-content">
+                        <span class="post-date">{{ news.publish_time }}</span>
+                        <a href="{{ news.get_absolute_url }}" class="post-title">{{ news.title }}</a>
+                        <p>{{ news.body | truncatewords:17 }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### News Area End ##### -->
+{% endblock content %}

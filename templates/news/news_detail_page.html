@@ -1,0 +1,59 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ news.title }}
+{% endblock title %}
+
+{% block content %}
+<!-- ##### Post Details Title Area Start ##### -->
+<div class="container">
+    <div class="post-details-title-area bg-overlay clearfix" style="background-image: url('{{ news.image.url }}')">
+        <div class="row h-100">
+            <div class="col-12 col-lg-8">
+                <!-- Post Content -->
+                <div class="post-content h-100 d-flex flex-column justify-content-between">
+                    <div>
+                        <p class="tag"><span>{{news.category}}</span></p>
+                    </div>
+                    <div>
+                        <p class="post-title">{{ news.title }}</p>
+                        <div class="d-flex align-items-center">
+                            <span class="post-date mr-30">{{ news.publish_time }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Post Details Title Area End ##### -->
+
+<!-- ##### Post Details Area Start ##### -->
+<section class="post-news-area section-padding-100-0 mb-70">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Post Details Content Area -->
+            <div class="col-12">
+                <h5 class="mb-30">{{ news.title }}</h5>
+                <p>{{ news.body }}</p>
+                <span>{{ news.publish_time }}</span>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<!-- ##### Post Details Area End ##### -->
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <a href="{% url 'news_edit' news.slug %}" class="btn btn-info">Tahrirlash</a> |
+            <a href="{% url 'news_delete' news.slug %}" class="btn btn-danger">O'chirish</a> |
+            <a href="{% url 'news_create' %}" class="btn btn-success">Yangi qo'shish</a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

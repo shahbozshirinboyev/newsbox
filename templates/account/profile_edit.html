@@ -1,0 +1,22 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %}
+    Ma'lumotlarni o'zgartirish | NewsBOX
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5>Profile ma'lumotlarnini tahrirlash</h5>
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        <button type="submit" class="btn btn-success">Saqlash</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

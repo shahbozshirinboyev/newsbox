@@ -1,0 +1,25 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %}
+    Login
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5>Login</h5>
+      <p>Ma'lumotlaringizni kiriting!</p>
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Kirish</button>
+      </form>
+      <br>
+      <p>Parolni unutdingizmi? - <a href="{% url 'password_reset' %}">Parolni qayta tiklash</a></p>
+      <p>Hisobingiz yo'qmi? -  <a href="{% url 'signup' %}">Ro'yxatdan o'tish</a></p>
+    </div>
+  </div>
+</div>
+{% endblock content %}

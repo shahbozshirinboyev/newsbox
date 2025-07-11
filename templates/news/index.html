@@ -1,0 +1,346 @@
+{% extends 'news/base.html' %} {% load static %} {% block content %}
+
+<!-- ##### Breaking News Area Start ##### -->
+<section class="container mb-3">
+    <div class="row">
+        <div class="col-12">
+            <!-- Breaking News Widget -->
+            <div class="breaking-news-area">
+                <div class="breaking-news-ticker d-flex flex-wrap align-items-center">
+                    <div class="title">
+                        <h6>BUGUN</h6>
+                    </div>
+                    <div id="breakingNewsTicker" class="ticker">
+                        <ul>
+                            {% for news in news_list %}
+                            <li>
+                                <a href="{{ news.get_absolute_url }}">{{ news.title }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Breaking News Area End ##### -->
+
+<!-- ##### Hero Area Start ##### -->
+<div class="hero-area mb-50">
+    <!-- Hero Post Slides -->
+    <div class="hero-post-slides owl-carousel">
+        <!-- Single Slide -->
+        <div class="single-slide">
+            <div class="container">
+                <div class="row">
+                    <!-- Chap tarafdagi post (katta) -->
+                    <div class="col-12 col-md-6">
+                        {% for news in news_list %}
+                        {% if forloop.first %}
+                        <div class="single-blog-post style-1 left-big-post" data-animation="fadeInUpBig"
+                            data-delay="100ms" data-duration="1000ms">
+                            <!-- Blog Thumbnail -->
+                            <div class="blog-thumbnail bg-overlay">
+                                <a href="{{ news.get_absolute_url }}"><img src="{{ news.image.url }}"
+                                        alt="{{ news.title }}" /></a>
+                            </div>
+
+                            <!-- Blog Content -->
+                            <div class="blog-content">
+                                <span class="post-date">{{ news.publish_time }}</span>
+                                <a href="{{ news.get_absolute_url }}"
+                                    class="post-title post-title-ellipsis-2">{{ news.title }}</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <!-- O'ng tarafdagi 3 ta post (kichik) -->
+                    <div class="col-12 col-md-6">
+                        {% for news in news_list %}
+                        {% if not forloop.first and forloop.counter < 4 %} <div
+                            class="single-blog-post style-1 right-post" data-animation="fadeInUpBig" data-delay="300ms"
+                            data-duration="1000ms">
+                            <!-- Blog Thumbnail -->
+                            <div class="blog-thumbnail bg-overlay">
+                                <a href="{{ news.get_absolute_url }}"><img src="{{ news.image.url }}"
+                                        alt="{{ news.title }}" /></a>
+                            </div>
+
+                            <!-- Blog Content -->
+                            <div class="blog-content">
+                                <span class="post-date">{{ news.publish_time }}</span>
+                                <a href="{{ news.get_absolute_url }}"
+                                    class="post-title post-title-ellipsis-2">{{ news.title }}</a>
+                            </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- ##### Hero Area End ##### -->
+
+<div class="container mb-50">
+    <div class="row">
+        <div class="col-12">
+            <!-- Intro News Filter -->
+            <div class="intro-news-filter d-flex justify-content-between">
+                <h6>So'nggi Yangiliklar</h6>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {% for news in news_list|slice:"6" %}
+        <div class="col-12 col-sm-6">
+            <div class="single-blog-post d-flex style-4 mb-30">
+                <!-- Blog Thumbnail -->
+                <div class="blog-thumbnail">
+                    <a href="{{ news.get_absolute_url }}">
+                        <img class="news-thumbnail-img" src="{{ news.image.url }}" alt="{{ news.title }}" />
+                    </a>
+                </div>
+
+                <!-- Blog Content -->
+                <div class="blog-content">
+                    <span class="post-date">{{ news.publish_time }}</span>
+                    <a href="{{ news.get_absolute_url }}" class="post-title post-title-ellipsis-2">
+                        {{ news.title }}
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- ##### Intro News Area Start ##### -->
+<section class="intro-news-area mb-50">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Intro News Tabs Area -->
+            <div class="col-12">
+                <div class="intro-news-tab">
+                    <!-- Intro News Filter -->
+                    <div class="intro-news-filter d-flex justify-content-between">
+                        <h6>Ko'p o'qilagan</h6>
+                        <nav>
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav1" data-toggle="tab" href="#nav-1" role="tab"
+                                    aria-controls="nav-1" aria-selected="true">Jamiyat</a>
+
+                                <a class="nav-item nav-link" id="nav2" data-toggle="tab" href="#nav-2" role="tab"
+                                    aria-controls="nav-2" aria-selected="false">Siyosat</a>
+
+                                <a class="nav-item nav-link" id="nav3" data-toggle="tab" href="#nav-3" role="tab"
+                                    aria-controls="nav-3" aria-selected="false">Texnologiya</a>
+                            </div>
+                        </nav>
+                    </div>
+
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-1" role="tabpanel" aria-labelledby="nav1">
+                            <div class="row">
+                                {% for jm in jamiyat %}
+                                {% if forloop.counter < 3 %}
+                                <!-- Single News Area -->
+                                <div class="col-12 col-sm-6">
+                                    <div class="single-blog-post style-2 mb-5">
+                                        <!-- Blog Thumbnail -->
+                                        <div class="blog-thumbnail">
+                                            <a href="{{ jm.get_absolute_url }}"><img src="{{ jm.image.url }}" alt="" /></a>
+                                        </div>
+
+                                        <!-- Blog Content -->
+                                        <div class="blog-content">
+                                            <span class="post-date">{{ jm.publish_time }}</span>
+                                            <a href="{{ jm.get_absolute_url }}" class="post-title"> {{jm.title|truncatewords:5}} </a>
+                                            <p>{{ jm.body|truncatewords:4 }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+
+                                {% for jm in jamiyat %}
+                                {% if forloop.counter >= 3 and forloop.counter <= 6 %}
+                                <!-- Single News Area -->
+                                <div class="col-12 col-sm-6">
+                                    <div class="single-blog-post d-flex style-4 mb-30">
+                                        <!-- Blog Thumbnail -->
+                                        <div class="blog-thumbnail">
+                                            <a href="{{ jm.get_absolute_url }}">
+                                                <img src="{{jm.image.url}}" alt="{{jm.title}}" class="news-thumbnail-img" />
+                                            </a>
+                                        </div>
+
+                                        <!-- Blog Content -->
+                                        <div class="blog-content">
+                                            <span class="post-date">{{ jm.publish_time }}</span>
+                                            <a href="{{ jm.get_absolute_url }}" class="post-title">{{ jm.title|truncatewords:4 }}</a>
+                                            <p>{{ jm.body|truncatewords:4 }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="nav-2" role="tabpanel" aria-labelledby="nav2">
+                            <div class="row">
+                                {% for jm in siyosat %}
+                                {% if forloop.counter < 3 %}
+                                <!-- Single News Area -->
+                                <div class="col-12 col-sm-6">
+                                    <div class="single-blog-post style-2 mb-5">
+                                        <!-- Blog Thumbnail -->
+                                        <div class="blog-thumbnail">
+                                            <a href="{{ jm.get_absolute_url }}"><img src="{{ jm.image.url }}" alt="" /></a>
+                                        </div>
+
+                                        <!-- Blog Content -->
+                                        <div class="blog-content">
+                                            <span class="post-date">{{ jm.publish_time }}</span>
+                                            <a href="{{ jm.get_absolute_url }}" class="post-title"> {{jm.title|truncatewords:5}} </a>
+                                            <p>{{ jm.body|truncatewords:4 }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+
+                                {% for jm in siyosat %}
+                                {% if forloop.counter >= 3 and forloop.counter <= 6 %}
+                                <!-- Single News Area -->
+                                <div class="col-12 col-sm-6">
+                                    <div class="single-blog-post d-flex style-4 mb-30">
+                                        <!-- Blog Thumbnail -->
+                                        <div class="blog-thumbnail">
+                                            <a href="{{ jm.get_absolute_url }}">
+                                                <img src="{{jm.image.url}}" alt="{{jm.title}}" class="news-thumbnail-img" />
+                                            </a>
+                                        </div>
+
+                                        <!-- Blog Content -->
+                                        <div class="blog-content">
+                                            <span class="post-date">{{ jm.publish_time }}</span>
+                                            <a href="{{ jm.get_absolute_url }}" class="post-title">{{ jm.title|truncatewords:4 }}</a>
+                                            <p>{{ jm.body|truncatewords:4 }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="nav-3" role="tabpanel" aria-labelledby="nav3">
+                            <div class="row">
+                                {% for jm in texnologiya %}
+                                {% if forloop.counter < 3 %}
+                                <!-- Single News Area -->
+                                <div class="col-12 col-sm-6">
+                                    <div class="single-blog-post style-2 mb-5">
+                                        <!-- Blog Thumbnail -->
+                                        <div class="blog-thumbnail">
+                                            <a href="{{ jm.get_absolute_url }}"><img src="{{ jm.image.url }}" alt="" /></a>
+                                        </div>
+
+                                        <!-- Blog Content -->
+                                        <div class="blog-content">
+                                            <span class="post-date">{{ jm.publish_time }}</span>
+                                            <a href="{{ jm.get_absolute_url }}" class="post-title"> {{jm.title|truncatewords:5}} </a>
+                                            <p>{{ jm.body|truncatewords:4 }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+
+                                {% for jm in texnologiya %}
+                                {% if forloop.counter >= 3 and forloop.counter <= 6 %}
+                                <!-- Single News Area -->
+                                <div class="col-12 col-sm-6">
+                                    <div class="single-blog-post d-flex style-4 mb-30">
+                                        <!-- Blog Thumbnail -->
+                                        <div class="blog-thumbnail">
+                                            <a href="{{ jm.get_absolute_url }}">
+                                                <img src="{{jm.image.url}}" alt="{{jm.title}}" class="news-thumbnail-img" />
+                                            </a>
+                                        </div>
+
+                                        <!-- Blog Content -->
+                                        <div class="blog-content">
+                                            <span class="post-date">{{ jm.publish_time }}</span>
+                                            <a href="{{ jm.get_absolute_url }}" class="post-title">{{ jm.title|truncatewords:4 }}</a>
+                                            <p>{{ jm.body|truncatewords:4 }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Intro News Area End ##### -->
+
+<!-- ##### Video Area Start ##### -->
+<section class="mb-50">
+    <!-- Video Slideshow -->
+    <div class="container">
+        <div class="video-slideshow p-4">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Video Slides -->
+                    <div class="video-slides owl-carousel">
+                        {% for news in news_list %}
+                        <!-- Single News Area -->
+                        <div class="single-blog-post style-3">
+                            <!-- Blog Thumbnail -->
+                            <div class="blog-thumbnail">
+                                <a href="{{ news.get_absolute_url }}">
+                                    <img src="{{ news.image.url }}" alt="{{news.title}}" class="object-fit-cover w-100" style="height: 200px;"/>
+                                </a>
+                            </div>
+
+                            <!-- Blog Content -->
+                            <div class="blog-content">
+                                <span class="post-date">{{news.publish_time}}</span>
+                                <a href="{{ news.get_absolute_url }}">
+                                    <p class="post-title post-title-ellipsis-2">
+                                    {{news.title}}
+                                </p>
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Video Area End ##### -->
+
+<!-- ##### Add Area Start ##### -->
+<div class="big-add-area mb-50">
+    <div class="container">
+        <a href="#"><img src="{% static 'img/bg-img/add2.png' %}" alt="" /></a>
+    </div>
+</div>
+<!-- ##### Add Area End ##### -->
+{% endblock content %}

@@ -1,0 +1,23 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %}
+    Ro'yxatdan o'tish | NewsBOX
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5>Ro'yxatdan o'tish</h5>
+      <p>Ro'yxatdan o'tish uchun ma'lumotlaringizni kiriting:</p>
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        <button type="submit" class="btn btn-success">Ro'yxatdan o'tish</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}

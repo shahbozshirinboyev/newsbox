@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News List | 2025</title>
+  </head>
+  <body>
+    <h4>News List | Published</h4>
+    {% for news in news_list_published %}
+    <li>
+      <a href="{% url 'news_detail_page' news.pk %}"> {{ news.title }} </a>
+    </li>
+    {% endfor %}
+
+    <br />
+    <hr />
+    <h4>News List | Draft</h4>
+    {% for news in news_list_draft %}
+    <li>{{ news.title }}</li>
+    {% endfor %}
+  </body>
+</html>
