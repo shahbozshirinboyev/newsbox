@@ -133,9 +133,13 @@ LOCALE_PATHS = BASE_DIR, 'locale'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
+# STATIC_URL = '/static/'
+# STATIC_ROOT = '/home/djangomo/django.shirinboyev.uz/django/staticfiles'
+# STATICFILES_DIRS = ['/home/woodcity/django.shirinboyev.uz/django/static']
+
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/djangomo/django.shirinboyev.uz/django/staticfiles'
-STATICFILES_DIRS = ['/home/woodcity/django.shirinboyev.uz/django/static']
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # STATIC_ROOT = BASE_DIR / 'staticfiles'
 # STATICFILES_DIRS = [BASE_DIR / 'static']
