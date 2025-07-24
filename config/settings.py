@@ -149,8 +149,11 @@ STATICFILES_FINDERS = [
   'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = '/home/woodcity/django.shirinboyev.uz/django/media'
+# MEDIA_URL = 'media/'
+# MEDIA_ROOT = '/home/woodcity/django.shirinboyev.uz/django/media'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # MEDIA_ROOT = BASE_DIR / 'media/'
 
