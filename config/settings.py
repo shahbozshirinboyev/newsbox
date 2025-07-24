@@ -135,7 +135,7 @@ LOCALE_PATHS = BASE_DIR, 'locale'
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/home/djangomo/django.shirinboyev.uz/django/staticfiles'
-STATICFILES_DIRS = ('/home/djangomo/django.shirinboyev.uz/django/static', )
+STATICFILES_DIRS = ['/home/woodcity/django.shirinboyev.uz/django/static']
 
 # STATIC_ROOT = BASE_DIR / 'staticfiles'
 # STATICFILES_DIRS = [BASE_DIR / 'static']
@@ -146,7 +146,7 @@ STATICFILES_FINDERS = [
 ]
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = '/home/djangomo/django.shirinboyev.uz/django/media'
+MEDIA_ROOT = '/home/woodcity/django.shirinboyev.uz/django/media'
 
 # MEDIA_ROOT = BASE_DIR / 'media/'
 
