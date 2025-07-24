@@ -1,14 +1,15 @@
 {% extends 'news/base.html' %}
+{% load i18n %}
 {% load static %}
 
-{% block title %}Tashkilot haqida{% endblock title %}
+{% block title %}{% blocktrans %}Tashkilot haqida{% endblocktrans %}{% endblock title %}
 
 {% block content %}
 <!-- ##### Contact Area Start ##### -->
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h4>Tashkilot haqida</h4>
+      <h4>{% blocktrans %}Tashkilot haqida{% endblocktrans %}</h4>
     </div>
   </div>
 </div>

@@ -12,22 +12,29 @@ Foydalanuvchi profile
       <h4>Xush kelidsiz, {{ user.username | title }}</h4>
       <br>
       <h5>Siz haqingizdagi ma'lumotlar:</h5>
-      <label for="">Username: <input type="text" value="{{ user.username }}" readonly placeholder="kiritilmagan"> </label>
+      <label for="">Username: <input type="text" value="{{ user.username }}" readonly placeholder="kiritilmagan">
+      </label>
       <label for="">Email: <input type="text" value="{{ user.email }}" readonly placeholder="kiritilmagan"> </label>
-      <label for="">Ismingiz: <input type="text" value="{{ user.first_name }}" readonly placeholder="kiritilmagan"></label>
-      <label for="">Familiyangiz: <input type="text" value="{{ user.last_name }}" readonly placeholder="kiritilmagan"></label>
-      <label for="">Photo: </label> <img src="{{profile.photo.url}}" alt="{{ user.username }}" class="img-thumbnail rounded-circle" style="width: 150px;">
+      <label for="">Ismingiz: <input type="text" value="{{ user.first_name }}" readonly
+          placeholder="kiritilmagan"></label>
+      <label for="">Familiyangiz: <input type="text" value="{{ user.last_name }}" readonly
+          placeholder="kiritilmagan"></label>
+      <label for="">Photo: </label>
+      {% if profile.photo %}
+      <img src="{{ profile.photo.url }}" alt="{{ user.username }}" class="img-thumbnail rounded-circle"
+        style="width: 150px;">
+      {% else %}
+      <p>Rasm mavjud emas</p>
+      {% endif %}
       <label for="">Tug'ulgan sana: <span>{{ profile.date_of_birth }}</span></label>
-
       <div>
         <form method="post" action="{% url 'logout' %}" style="display:inline;">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Chiqish</button>
-      </form>
-      <a href="{% url 'password_change' %}" class="btn btn-success" >Parolni almashtirish</a>
-      <a href="{% url 'edit_user_info' %}" class="btn btn-success" >Ma'lumotlarni tahrirlash</a>
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">Chiqish</button>
+        </form>
+        <a href="{% url 'password_change' %}" class="btn btn-success">Parolni almashtirish</a>
+        <a href="{% url 'edit_user_info' %}" class="btn btn-success">Ma'lumotlarni tahrirlash</a>
       </div>
-
     </div>
   </div>
 </div>

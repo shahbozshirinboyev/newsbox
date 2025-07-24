@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -63,8 +64,30 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="{% url 'home_page' %}">Bosh
-                                            sahifa</a></li>
+                                    <li>
+                                        <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                                            <input name="next" type="hidden" value="{{ redirect_to }}">
+                                            <select name="language">
+                                                {% get_current_language as LANGUAGE_CODE %}
+                                                {% get_available_languages as LANGUAGES %}
+                                                {% get_language_info_list for LANGUAGES as languages %}
+                                                {% for language in languages %}
+                                                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                                                        {{ language.name_local }} ({{ language.code }})
+                                                    </option>
+                                                {% endfor %}
+                                            </select>
+                                            <input type="submit" value="Go">
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form action="{% url 'searchresults' %}" method="get">
+                                            <input type="search" name="q" placeholder="Qidiruv..." class="form-control">
+                                        </form>
+                                    </li>
+                                    <!-- <li>
+                                            <a href="{% url 'home_page' %}">Bosh sahifa</a>
+                                         </li> -->
                                     <li>
                                         <a href="{% url 'categories' %}">Bo'limlar</a>
                                         <ul class="dropdown">
@@ -80,6 +103,7 @@
                                     </li>
                                     <li><a href="{% url 'about' %}">Tashkilot</a></li>
                                     <li><a href="{% url 'contact' %}">Bog'lanish</a></li>
+
                                     <li>
                                         {% if user.is_authenticated %}
                                         <p>
@@ -87,6 +111,13 @@
                                         </p>
                                         {% else %}
                                         <a href="{% url 'login' %}" class="btn btn-success text-white">Kirish</a>
+                                        {% endif %}
+                                    </li>
+                                    <li>
+                                        {% if user.is_authenticated and user.is_superuser %}
+                                        <p>
+                                            <a href="{% url 'admin_page' %}">admin</a>
+                                        </p>
                                         {% endif %}
                                     </li>
                                 </ul>

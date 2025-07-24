@@ -1,4 +1,4 @@
-{% extends 'news/base.html' %} {% load static %} {% block content %}
+{% extends 'news/base.html' %} {% load static %} {% block content %} {% load hitcount_tags %}
 
 <!-- ##### Breaking News Area Start ##### -->
 <section class="container mb-3">
@@ -49,8 +49,7 @@
                             <!-- Blog Content -->
                             <div class="blog-content">
                                 <span class="post-date">{{ news.publish_time }}</span>
-                                <a href="{{ news.get_absolute_url }}"
-                                    class="post-title post-title-ellipsis-2">{{ news.title }}</a>
+                                <a href="{{ news.get_absolute_url }}" class="post-title post-title-ellipsis-2">{{ news.title }}</a>
                             </div>
                         </div>
                         {% endif %}
@@ -72,8 +71,8 @@
                             <!-- Blog Content -->
                             <div class="blog-content">
                                 <span class="post-date">{{ news.publish_time }}</span>
-                                <a href="{{ news.get_absolute_url }}"
-                                    class="post-title post-title-ellipsis-2">{{ news.title }}</a>
+                                <a href="{{ news.get_absolute_url }}" class="post-title post-title-ellipsis-2">
+                                    {{ news.title }}</a>
                             </div>
                     </div>
                     {% endif %}
@@ -112,6 +111,10 @@
                     <a href="{{ news.get_absolute_url }}" class="post-title post-title-ellipsis-2">
                         {{ news.title }}
                     </a>
+                    <span class="post-date mr-30">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16"> <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" /> <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" /> </svg>
+                        {% get_hit_count for news %}
+                    </span>
                 </div>
             </div>
         </div>
@@ -147,48 +150,44 @@
                         <div class="tab-pane fade show active" id="nav-1" role="tabpanel" aria-labelledby="nav1">
                             <div class="row">
                                 {% for jm in jamiyat %}
-                                {% if forloop.counter < 3 %}
-                                <!-- Single News Area -->
-                                <div class="col-12 col-sm-6">
-                                    <div class="single-blog-post style-2 mb-5">
-                                        <!-- Blog Thumbnail -->
-                                        <div class="blog-thumbnail">
-                                            <a href="{{ jm.get_absolute_url }}"><img src="{{ jm.image.url }}" alt="" /></a>
-                                        </div>
-
-                                        <!-- Blog Content -->
-                                        <div class="blog-content">
-                                            <span class="post-date">{{ jm.publish_time }}</span>
-                                            <a href="{{ jm.get_absolute_url }}" class="post-title"> {{jm.title|truncatewords:5}} </a>
-                                            <p>{{ jm.body|truncatewords:4 }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                {% endif %}
-                                {% endfor %}
-
-                                {% for jm in jamiyat %}
-                                {% if forloop.counter >= 3 and forloop.counter <= 6 %}
-                                <!-- Single News Area -->
-                                <div class="col-12 col-sm-6">
-                                    <div class="single-blog-post d-flex style-4 mb-30">
-                                        <!-- Blog Thumbnail -->
-                                        <div class="blog-thumbnail">
-                                            <a href="{{ jm.get_absolute_url }}">
-                                                <img src="{{jm.image.url}}" alt="{{jm.title}}" class="news-thumbnail-img" />
-                                            </a>
-                                        </div>
-
-                                        <!-- Blog Content -->
-                                        <div class="blog-content">
-                                            <span class="post-date">{{ jm.publish_time }}</span>
-                                            <a href="{{ jm.get_absolute_url }}" class="post-title">{{ jm.title|truncatewords:4 }}</a>
-                                            <p>{{ jm.body|truncatewords:4 }}</p>
+                                {% if forloop.counter < 3 %} <!-- Single News Area -->
+                                    <div class="col-12 col-sm-6">
+                                        <div class="single-blog-post style-2 mb-5">
+                                            <!-- Blog Thumbnail -->
+                                            <div class="blog-thumbnail">
+                                                <a href="{{ jm.get_absolute_url }}"><img src="{{ jm.image.url }}" alt="" /></a>
+                                            </div>
+                                            <!-- Blog Content -->
+                                            <div class="blog-content">
+                                                <span class="post-date">{{ jm.publish_time }}</span>
+                                                <a href="{{ jm.get_absolute_url }}" class="post-title"> {{jm.title|truncatewords:5}} </a>
+                                                <p>{{ jm.body|truncatewords:4 }}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                {% endif %}
-                                {% endfor %}
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% for jm in jamiyat %}
+                                    {% if forloop.counter >= 3 and forloop.counter <= 6 %} <!-- Single News Area -->
+                                        <div class="col-12 col-sm-6">
+                                            <div class="single-blog-post d-flex style-4 mb-30">
+                                                <!-- Blog Thumbnail -->
+                                                <div class="blog-thumbnail">
+                                                    <a href="{{ jm.get_absolute_url }}">
+                                                        <img src="{{jm.image.url}}" alt="{{jm.title}}" class="news-thumbnail-img" />
+                                                    </a>
+                                                </div>
+
+                                                <!-- Blog Content -->
+                                                <div class="blog-content">
+                                                    <span class="post-date">{{ jm.publish_time }}</span>
+                                                    <a href="{{ jm.get_absolute_url }}" class="post-title">{{ jm.title|truncatewords:4 }}</a>
+                                                    <p>{{ jm.body|truncatewords:4 }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                        {% endfor %}
 
                             </div>
                         </div>
@@ -196,48 +195,50 @@
                         <div class="tab-pane fade" id="nav-2" role="tabpanel" aria-labelledby="nav2">
                             <div class="row">
                                 {% for jm in siyosat %}
-                                {% if forloop.counter < 3 %}
-                                <!-- Single News Area -->
-                                <div class="col-12 col-sm-6">
-                                    <div class="single-blog-post style-2 mb-5">
-                                        <!-- Blog Thumbnail -->
-                                        <div class="blog-thumbnail">
-                                            <a href="{{ jm.get_absolute_url }}"><img src="{{ jm.image.url }}" alt="" /></a>
-                                        </div>
+                                {% if forloop.counter < 3 %} <!-- Single News Area -->
+                                    <div class="col-12 col-sm-6">
+                                        <div class="single-blog-post style-2 mb-5">
+                                            <!-- Blog Thumbnail -->
+                                            <div class="blog-thumbnail">
+                                                <a href="{{ jm.get_absolute_url }}"><img src="{{ jm.image.url }}"
+                                                        alt="" /></a>
+                                            </div>
 
-                                        <!-- Blog Content -->
-                                        <div class="blog-content">
-                                            <span class="post-date">{{ jm.publish_time }}</span>
-                                            <a href="{{ jm.get_absolute_url }}" class="post-title"> {{jm.title|truncatewords:5}} </a>
-                                            <p>{{ jm.body|truncatewords:4 }}</p>
+                                            <!-- Blog Content -->
+                                            <div class="blog-content">
+                                                <span class="post-date">{{ jm.publish_time }}</span>
+                                                <a href="{{ jm.get_absolute_url }}" class="post-title">
+                                                    {{jm.title|truncatewords:5}} </a>
+                                                <p>{{ jm.body|truncatewords:4 }}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                {% endif %}
-                                {% endfor %}
+                                    {% endif %}
+                                    {% endfor %}
 
-                                {% for jm in siyosat %}
-                                {% if forloop.counter >= 3 and forloop.counter <= 6 %}
-                                <!-- Single News Area -->
-                                <div class="col-12 col-sm-6">
-                                    <div class="single-blog-post d-flex style-4 mb-30">
-                                        <!-- Blog Thumbnail -->
-                                        <div class="blog-thumbnail">
-                                            <a href="{{ jm.get_absolute_url }}">
-                                                <img src="{{jm.image.url}}" alt="{{jm.title}}" class="news-thumbnail-img" />
-                                            </a>
-                                        </div>
+                                    {% for jm in siyosat %}
+                                    {% if forloop.counter >= 3 and forloop.counter <= 6 %} <!-- Single News Area -->
+                                        <div class="col-12 col-sm-6">
+                                            <div class="single-blog-post d-flex style-4 mb-30">
+                                                <!-- Blog Thumbnail -->
+                                                <div class="blog-thumbnail">
+                                                    <a href="{{ jm.get_absolute_url }}">
+                                                        <img src="{{jm.image.url}}" alt="{{jm.title}}"
+                                                            class="news-thumbnail-img" />
+                                                    </a>
+                                                </div>
 
-                                        <!-- Blog Content -->
-                                        <div class="blog-content">
-                                            <span class="post-date">{{ jm.publish_time }}</span>
-                                            <a href="{{ jm.get_absolute_url }}" class="post-title">{{ jm.title|truncatewords:4 }}</a>
-                                            <p>{{ jm.body|truncatewords:4 }}</p>
+                                                <!-- Blog Content -->
+                                                <div class="blog-content">
+                                                    <span class="post-date">{{ jm.publish_time }}</span>
+                                                    <a href="{{ jm.get_absolute_url }}" class="post-title">{{
+                                                        jm.title|truncatewords:4 }}</a>
+                                                    <p>{{ jm.body|truncatewords:4 }}</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                {% endif %}
-                                {% endfor %}
+                                        {% endif %}
+                                        {% endfor %}
 
                             </div>
                         </div>
@@ -245,48 +246,50 @@
                         <div class="tab-pane fade" id="nav-3" role="tabpanel" aria-labelledby="nav3">
                             <div class="row">
                                 {% for jm in texnologiya %}
-                                {% if forloop.counter < 3 %}
-                                <!-- Single News Area -->
-                                <div class="col-12 col-sm-6">
-                                    <div class="single-blog-post style-2 mb-5">
-                                        <!-- Blog Thumbnail -->
-                                        <div class="blog-thumbnail">
-                                            <a href="{{ jm.get_absolute_url }}"><img src="{{ jm.image.url }}" alt="" /></a>
-                                        </div>
+                                {% if forloop.counter < 3 %} <!-- Single News Area -->
+                                    <div class="col-12 col-sm-6">
+                                        <div class="single-blog-post style-2 mb-5">
+                                            <!-- Blog Thumbnail -->
+                                            <div class="blog-thumbnail">
+                                                <a href="{{ jm.get_absolute_url }}"><img src="{{ jm.image.url }}"
+                                                        alt="" /></a>
+                                            </div>
 
-                                        <!-- Blog Content -->
-                                        <div class="blog-content">
-                                            <span class="post-date">{{ jm.publish_time }}</span>
-                                            <a href="{{ jm.get_absolute_url }}" class="post-title"> {{jm.title|truncatewords:5}} </a>
-                                            <p>{{ jm.body|truncatewords:4 }}</p>
+                                            <!-- Blog Content -->
+                                            <div class="blog-content">
+                                                <span class="post-date">{{ jm.publish_time }}</span>
+                                                <a href="{{ jm.get_absolute_url }}" class="post-title">
+                                                    {{jm.title|truncatewords:5}} </a>
+                                                <p>{{ jm.body|truncatewords:4 }}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                {% endif %}
-                                {% endfor %}
+                                    {% endif %}
+                                    {% endfor %}
 
-                                {% for jm in texnologiya %}
-                                {% if forloop.counter >= 3 and forloop.counter <= 6 %}
-                                <!-- Single News Area -->
-                                <div class="col-12 col-sm-6">
-                                    <div class="single-blog-post d-flex style-4 mb-30">
-                                        <!-- Blog Thumbnail -->
-                                        <div class="blog-thumbnail">
-                                            <a href="{{ jm.get_absolute_url }}">
-                                                <img src="{{jm.image.url}}" alt="{{jm.title}}" class="news-thumbnail-img" />
-                                            </a>
-                                        </div>
+                                    {% for jm in texnologiya %}
+                                    {% if forloop.counter >= 3 and forloop.counter <= 6 %} <!-- Single News Area -->
+                                        <div class="col-12 col-sm-6">
+                                            <div class="single-blog-post d-flex style-4 mb-30">
+                                                <!-- Blog Thumbnail -->
+                                                <div class="blog-thumbnail">
+                                                    <a href="{{ jm.get_absolute_url }}">
+                                                        <img src="{{jm.image.url}}" alt="{{jm.title}}"
+                                                            class="news-thumbnail-img" />
+                                                    </a>
+                                                </div>
 
-                                        <!-- Blog Content -->
-                                        <div class="blog-content">
-                                            <span class="post-date">{{ jm.publish_time }}</span>
-                                            <a href="{{ jm.get_absolute_url }}" class="post-title">{{ jm.title|truncatewords:4 }}</a>
-                                            <p>{{ jm.body|truncatewords:4 }}</p>
+                                                <!-- Blog Content -->
+                                                <div class="blog-content">
+                                                    <span class="post-date">{{ jm.publish_time }}</span>
+                                                    <a href="{{ jm.get_absolute_url }}" class="post-title">{{
+                                                        jm.title|truncatewords:4 }}</a>
+                                                    <p>{{ jm.body|truncatewords:4 }}</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                {% endif %}
-                                {% endfor %}
+                                        {% endif %}
+                                        {% endfor %}
 
                             </div>
                         </div>
@@ -313,7 +316,8 @@
                             <!-- Blog Thumbnail -->
                             <div class="blog-thumbnail">
                                 <a href="{{ news.get_absolute_url }}">
-                                    <img src="{{ news.image.url }}" alt="{{news.title}}" class="object-fit-cover w-100" style="height: 200px;"/>
+                                    <img src="{{ news.image.url }}" alt="{{news.title}}" class="object-fit-cover w-100"
+                                        style="height: 200px;" />
                                 </a>
                             </div>
 
@@ -322,8 +326,8 @@
                                 <span class="post-date">{{news.publish_time}}</span>
                                 <a href="{{ news.get_absolute_url }}">
                                     <p class="post-title post-title-ellipsis-2">
-                                    {{news.title}}
-                                </p>
+                                        {{news.title}}
+                                    </p>
                                 </a>
                             </div>
                         </div>

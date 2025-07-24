@@ -35,6 +35,15 @@ body {
   display: block;
   /* Rasmlar orasidagi bo'sh joylarni olib tashlash uchun */
 }
+.form-control:focus {
+  border-color: inherit !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+textarea {
+  resize: none;
+}
 
 .right-post {
   height: 210px;

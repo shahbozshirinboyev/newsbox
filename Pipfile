@@ -4,10 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pillow = "*"
 django = "*"
-whitenoise = "*"
-gunicorn = "*"
+pillow = "*"
+django-hitcount = "*"
+django-modeltranslation = "*"
+python-decouple = "*"
 
 [dev-packages]
 

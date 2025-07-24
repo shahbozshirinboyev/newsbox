@@ -1,0 +1,39 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %}
+  Adminlar ma'lumotlari!
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h3>Barcha adminlar</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table table-striped">
+        <tr>
+          <th>Username</th>
+          <th>Ism</th>
+          <th>Familiya</th>
+        </tr>
+        {% for user in admin_users %}
+        <tr>
+          <td>{{ user.username }}</td>
+          <td>{{ user.first_name }}</td>
+          <td>{{ user.last_name }}</td>
+        </tr>
+        {% endfor  %}
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <a class="btn btn-info" type="button" href="{% url 'news_create' %}">Yangilik qo'shish</a>
+    </div>
+  </div>
+</div>
+{% endblock content %}
